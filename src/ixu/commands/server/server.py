@@ -47,12 +47,8 @@ class Server(Flask):
     @register_route("/issues", ['GET'])
     def issues(self):
         gitlab = Gitlab()
-        print("PROJECT ID: {}".format(self.project_id))
         project = gitlab.get_project(self.project_id)
-        milestones = project.get_milestones()
-        issues = []
-        for milestone in milestones:
-            issues = [*issues, *milestone.get_issues()]
+        issues = project.get_issues()
 
         labels = defaultdict(list)
         for issue in issues:
