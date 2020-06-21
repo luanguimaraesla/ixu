@@ -2,12 +2,16 @@
 # Builds, tests, lints and runs code coverage for gameserverproxy.
 # Defaults to the CI target, which mimics the behavior of Gitlabs' CI pipeline.
 
+# Include .env if the file exists
+-include .env
+export $(shell sed 's/=.*//' ".env" 2> /dev/null)
+
 # Install Prototool
 SHELL := /bin/bash -o pipefail
 VENV ?= ixu
 
 # Docker setup
-DOCKER_IMAGE_REGISTRY ?= registry.git.topfreegames.com/ixu
+DOCKER_IMAGE_REGISTRY ?= luanguimaraesla/ixu
 DOCKER_IMAGE_NAME ?= ixu
 DOCKER_IMAGE_TAG ?= dev
 

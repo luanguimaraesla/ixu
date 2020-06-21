@@ -25,7 +25,7 @@ class Server(Flask):
     def __init__(self, *args, **kwargs):
         Flask.__init__(self, Server.__name__)
         self.host = os.environ.get("IXU_HOST", "0.0.0.0")
-        self.port = int(os.environ.get("IXU_PORT", "8080"))
+        self.port = int(os.environ.get("IXU_PORT", 8080))
         self.project_id = os.environ.get("IXU_GITLAB_PROJECT_ID")
 
         for route, action in registered_routes.items():
