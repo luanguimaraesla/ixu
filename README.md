@@ -37,7 +37,7 @@ make test
 
 You should define the following environment variables
 
-* `IXU_GITLAB_URL`: Gitlab URL (default "gitlab.com")
+* `IXU_GITLAB_URL`: Gitlab URL (default "http://gitlab.com")
 * `IXU_GITLAB_TOKEN`: User token to access the Gitlab API
 * `IXU_HOST`: Host binding (default "0.0.0.0")
 * `IXU_PORT`: Server port (default 8080)
