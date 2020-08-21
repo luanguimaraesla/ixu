@@ -15,6 +15,16 @@ Also, you can run with docker by building or downloading the image before, then 
 docker run --rm --name ixu -p 8080:8080 luanguimaraesla/ixu:latest
 ```
 
+### Running the whole stack
+
+For a better visualization of the data collected we have a `docker-compose.yml` file that starts Prometheus and Grafana along with Ixu server. You should create an `.env` file with the necessary confiration and then run
+
+```bash
+docker-compose up --build
+```
+
+Ixu server will run in the port `8000`, Prometheus in `9090`, and Grafana in `3000`. Grafana's testing username is `admin` and the password is `ixu`.
+
 ### Building docker image
 
 To create a docker image run
@@ -33,7 +43,7 @@ $ make docker-push
 make test
 ```
 
-### Deploying in production
+### Configuration
 
 You should define the following environment variables
 
