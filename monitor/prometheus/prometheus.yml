@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 2m
+  scrape_timeout: 1m
+  evaluation_interval: 2m
+
+scrape_configs:
+- job_name: "gitlab_monitor"
+  metrics_path: "/export"
+  static_configs:
+  - targets: ["ixu:8000"]

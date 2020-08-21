@@ -72,8 +72,7 @@ class MetaGitlab(type):
         url = requests.compat.urljoin(self.__url, rendered_path)
         full_body = []
 
-        while True: 
-            print("URL: ", url)
+        while True:
             response = requests.get(url, headers=headers)
 
             if response.status_code == 200:

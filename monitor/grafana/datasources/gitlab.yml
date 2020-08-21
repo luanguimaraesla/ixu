@@ -1,0 +1,15 @@
+apiVersion: 1
+
+deleteDatasources:
+  - name: "GITLAB"
+    orgId: 1
+
+datasources:
+- name: "GITLAB"
+  type: "prometheus"
+  url: "http://prometheus:9090"
+  basicAuth: false
+  isDefault: true
+  editable: true
+  ordId: 1
+  access: proxy

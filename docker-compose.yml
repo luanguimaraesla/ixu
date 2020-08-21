@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  ixu:
+    image: luanguimaraesla/ixu:development
+    build: .
+    container_name: env
+    env_file:
+    - .env
+    volumes:
+    - .:/app
+    ports:
+    - 8000:8000
+  prometheus:
+    depends_on:
+    - ixu
+    image: prom/prometheus:v2.17.1
+    volumes:
+    - ./monitor/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+    - 9090:9090
+  grafana:
+    depends_on:
+    - prometheus
+    image: grafana/grafana:6.7.2
+    ports:
+      - "3000:3000"
+    user: "0"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: ixu
+      GF_USERS_DEFAULT_THEME: dark
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_USERS_ALLOW_ORG_CREATE: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+    volumes:
+    - ./monitor/grafana/grafana.ini:/etc/grafana/grafana.ini
+    - ./monitor/grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml
+    - ./monitor/grafana/dashboards:/var/lib/grafana/dashboards
+    - ./monitor/grafana/datasources:/etc/grafana/provisioning/datasources
